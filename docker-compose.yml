@@ -1,7 +1,7 @@
 version: '3'
 services:
   bot:
-    image: samohtgto/dizzybot
+    image: samohtgto/dizzybot:latest
     build: .
     env_file:
       - .env
