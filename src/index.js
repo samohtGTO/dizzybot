@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Collection } from "discord.js";
+const { Client, GatewayIntentBits, Collection } = require("discord.js");
 
 const config = require('./configuration.json');
 const fs = require('fs');
@@ -7,7 +7,7 @@ const client = new Client({intents:  [GatewayIntentBits.Guilds, GatewayIntentBit
 client.commands = new Collection();
 
 // Take commands
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
   const command = require(`./commands/` + file);
   client.commands.set(command.name, command);
