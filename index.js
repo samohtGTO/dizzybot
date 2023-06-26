@@ -1,11 +1,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
+if (process.env.SHARDCOUNT && process.env.SHARD) {
+	const client = new Client({ intents: [GatewayIntentBits.Guilds], shardCount: process.env.SHARDCOUNT, shards: process.env.SHARD});
+} else {
+	const client = new Client({ intents: [GatewayIntentBits.Guilds]});
+}
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
 
 client.commands = new Collection();
-client.commands = new Collection();
+client.cooldowns = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
@@ -35,6 +40,5 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
 
 client.login(process.env.DISCORD_TOKEN);

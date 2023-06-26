@@ -1,9 +1,11 @@
-const { Events } = require('discord.js');
+const { Events, Collection, PermissionsBitField} = require('discord.js');
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
 		if (!interaction.isChatInputCommand()) return;
+    if (!interaction.channel.permissionsFor(client.user).has(PermissionsBitField.Flags.SendMessages)) return;
+
 
 		const command = interaction.client.commands.get(interaction.commandName);
 
@@ -12,7 +14,7 @@ module.exports = {
 			return;
 		}
     const { cooldowns } = interaction.client;
-    
+
     if (!cooldowns.has(command.data.name)) {
       cooldowns.set(command.data.name, new Collection());
     }
