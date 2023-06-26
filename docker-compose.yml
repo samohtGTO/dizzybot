@@ -5,19 +5,6 @@ services:
     build: .
     env_file:
       - .env
-      - SHARDCOUNT=2
-      - SHARD=1
-    restart: unless-stopped
-    volumes:
-      - './commands:/app/commands'
-
-  bot2:
-    image: samohtgto/dizzybot:latest
-    build: .
-    env_file:
-      - .env
-      - SHARDCOUNT=2
-      - SHARD=2
     restart: unless-stopped
     volumes:
       - './commands:/app/commands'

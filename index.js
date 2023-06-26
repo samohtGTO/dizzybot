@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-if (process.env.SHARDCOUNT && process.env.SHARD) {
+if (process.env.SHARDCOUNT && process.env.REPLICA_NUMBER) {
+	console.log(process.env.SHARDCOUNT)	
 	const client = new Client({ intents: [GatewayIntentBits.Guilds], shardCount: process.env.SHARDCOUNT, shards: process.env.SHARD});
 } else {
 	const client = new Client({ intents: [GatewayIntentBits.Guilds]});
