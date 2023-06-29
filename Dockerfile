@@ -13,5 +13,7 @@ RUN npm install
 # Kopieer de rest van de bestanden naar de werkdirectory
 COPY . .
 
+RUN mkdir -p commands
+
 # Voer het startcommando uit
 CMD ["npm", "start"]

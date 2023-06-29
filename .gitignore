@@ -3,3 +3,4 @@ node_modules
 deploy-commands.js
 *.env
 discord-deployment.yml
+discord-token.txt

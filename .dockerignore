@@ -4,3 +4,4 @@ node_modules
 deploy-commands.js
 commands
 *.yml
+discord-token.txt

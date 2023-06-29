@@ -1,12 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-if (process.env.SHARDCOUNT && process.env.REPLICA_NUMBER) {
-	console.log(process.env.SHARDCOUNT)	
-	const client = new Client({ intents: [GatewayIntentBits.Guilds], shardCount: process.env.SHARDCOUNT, shards: process.env.SHARD});
-} else {
-	const client = new Client({ intents: [GatewayIntentBits.Guilds]});
-}
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds]});
 
 
 
@@ -41,5 +37,5 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
+// console.log(process.env)
 client.login(process.env.DISCORD_TOKEN);
